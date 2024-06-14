@@ -1,4 +1,4 @@
-from models import db, User
+from models import db, User, Post, Tag
 from app import app
 
 with app.app_context():
@@ -13,5 +13,14 @@ with app.app_context():
     ]
     
     db.session.add_all(users)
+    
+    db.session.commit()
+    
+    tags = [
+        Tag(name='test'),
+        Tag(name='example')
+    ]
+    
+    db.session.add_all(tags)
     
     db.session.commit()

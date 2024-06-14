@@ -7,12 +7,22 @@
 {% block content %}
     <h1>{{ user.first_name }} {{ user.last_name }}</h1>
     <img class="profile" src="{{ user.img_url }}" alt="{{ user.first_name }}-{{ user.last_name }}">
+    
+    <ul>
+        {% for post in user.posts %}
+        <a href="/posts/{{post.id}}"><li>{{post.title}}</li></a>
+        {% endfor %}
+    </ul>
+    
     <div>
         <a href="/users/{{user.id}}/edit">
             <button class="btn btn-success">Edit</button>
         </a>
         <a href="/users">
-            <button class="btn btn-primary">Back</button>
+            <button class="btn btn-secondary">Back</button>
+        </a>
+        <a href="/users/{{user.id}}/post">
+            <button class="btn btn-primary">Add Post</button>
         </a>
         <form action="/users/{{user.id}}/delete" method="post">
             <button class="btn btn-danger">Delete User</button>

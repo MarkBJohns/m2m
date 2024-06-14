@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} New Post {% endblock %}
+
+{% block content %}
+
+<h1>New Post</h1>
+
+<!-- <form action="/users/{{user.id}}/post" method="post">
+    {{ form.hidden_tag() }}
+    {% for field in form if field.widget.input_type != 'hidden' %}
+        <p>
+            {{field.label}}
+            {{field(_class="form-control")}}
+        </p>
+        
+        {% for error in field.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+    {% endfor %}
+    
+    <button class="btn btn-primary">Submit</button>
+</form> -->
+
+<form action="/users/{{ user.id }}/post" method="post">
+    {{ form.hidden_tag() }}
+    
+    <div class="form-group">
+        {{ form.title.label(class="form-label") }}
+        {{ form.title(class="form-control") }}
+        {% for error in form.title.errors %}
+            <p class="text-danger">{{ error }}</p>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group">
+        {{ form.content.label(class="form-label") }}
+        {{ form.content(class="form-control") }}
+        {% for error in form.content.errors %}
+            <p class="text-danger">{{ error }}</p>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group">
+        {{ form.tags.label(class="form-label") }}
+        {{ form.tags(class="form-control", multiple="multiple") }}
+        {% for error in form.tags.errors %}
+            <p class="text-danger">{{ error }}</p>
+        {% endfor %}
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+{% endblock %}
