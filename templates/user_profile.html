@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ user.first_name }} {{ user.last_name }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+    <img class="profile" src="{{ user.img_url }}" alt="{{ user.first_name }}-{{ user.last_name }}">
+    <div>
+        <a href="/users/{{user.id}}/edit">
+            <button class="btn btn-success">Edit</button>
+        </a>
+        <a href="/users">
+            <button class="btn btn-primary">Back</button>
+        </a>
+        <form action="/users/{{user.id}}/delete" method="post">
+            <button class="btn btn-danger">Delete User</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit User {% endblock %}
+
+{% block content %}
+
+<h1>{{user.first_name}} {{user.last_name}}</h1>
+
+<form action="/users/{{user.id}}/edit" method="post">
+    {{ form.hidden_tag() }}
+    {% for field in form if field.widget.input_type != 'hidden' %}
+        <p>
+            {{field.label}}
+            {{field(_class="form-control")}}
+        </p>
+        
+        {% for error in field.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+    {% endfor %}
+    
+    <button class="btn btn-primary">Edit</button>
+</form>
+
+<a href="/users/{{user.id}}">
+    <button class="btn btn-danger">Back</button>
+</a>
+
+{% endblock %}
